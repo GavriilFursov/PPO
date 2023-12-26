@@ -243,15 +243,17 @@ namespace SPPP
                 {
                     while (connectPort.BytesToRead > 0) // Пока данные получаем
                     {
+                        Thread.Sleep(10);
                         String raw_date = connectPort.ReadExisting();
+                        String usfulData = "";
                         if (raw_date.Substring(0, 2) == "A0") // Если данные не получены и получен стартовый флаг
                         {
-                            String usfulData = "";
                             for (int i = 2; i < raw_date.IndexOf("C0"); i++) { // почему 0????????????????????
                                 usfulData += raw_date[i];
                             }
-                            timer1.Stop(); // Останавливаем таймер.
                             dataFromMk = giveData(usfulData, '/');
+
+                            timer1.Stop(); // Останавливаем таймер.
 
                             int time = int.Parse(dataFromMk[0]); // Парсим в инты
                             int hour = time / 3600;

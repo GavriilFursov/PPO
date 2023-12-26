@@ -54,3 +54,17 @@ C:\Users\tsuki\Desktop\SPPP-master\SPPP\obj\Debug\SPPP.csproj.CoreCompileInputs.
 C:\Users\tsuki\Desktop\SPPP-master\SPPP\obj\Debug\SPPP.csproj.CopyComplete
 C:\Users\tsuki\Desktop\SPPP-master\SPPP\obj\Debug\SPPP.exe
 C:\Users\tsuki\Desktop\SPPP-master\SPPP\obj\Debug\SPPP.pdb
+C:\Users\Семен\Source\Repos\PPO\SPPP\bin\Debug\SPPP.exe.config
+C:\Users\Семен\Source\Repos\PPO\SPPP\bin\Debug\SPPP.exe
+C:\Users\Семен\Source\Repos\PPO\SPPP\bin\Debug\SPPP.pdb
+C:\Users\Семен\Source\Repos\PPO\SPPP\bin\Debug\LibUsbDotNet.LibUsbDotNet.dll
+C:\Users\Семен\Source\Repos\PPO\SPPP\bin\Debug\LibUsbDotNet.LibUsbDotNet.pdb
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.csproj.AssemblyReference.cache
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.csproj.ResolveComReference.cache
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.MainForm.resources
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.Properties.Resources.resources
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.csproj.GenerateResource.cache
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.csproj.CoreCompileInputs.cache
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.csproj.CopyComplete
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.exe
+C:\Users\Семен\Source\Repos\PPO\SPPP\obj\Debug\SPPP.pdb

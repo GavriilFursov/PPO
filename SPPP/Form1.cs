@@ -18,10 +18,10 @@ namespace SPPP
 {
     public partial class MainForm : Form
     {
-        public string startWord = "Start"; // Стартовое слово, для инициализации платы и определения типа стенда
-        public string typeOfStand; // Запоминаем тип стенда, для выбора конкретного шаблона
-        bool isConnected = false; // Флаг проверки соединения
-        bool isLoadData = false; // Флаг загрузки данных    
+        public string startWord = "Start";  // Стартовое слово, для инициализации платы и определения типа стенда
+        public string typeOfStand;          // Запоминаем тип стенда, для выбора конкретного шаблона
+        bool isConnected = false;           // Флаг проверки соединения
+        bool isLoadData = false;            // Флаг загрузки данных    
 
         List<String> dataFromMk = new List<string>() { };
 
@@ -76,7 +76,8 @@ namespace SPPP
                     isConnected = true; // Флаг - соединение установлено
                     connectPort.PortName = arduinoPort; // Присваиваем в название порта, найденный порт
                     connectPort.DataReceived += new SerialDataReceivedEventHandler(dataReceivedHandler); // Делегат
-                    connectPort.Open(); // Открываем порт   
+                    connectPort.Open(); // Открываем порт
+                    
                     buttonConnect.Text = "Отключиться"; // Меняем статус кнопки на "отключиться"
                 }
                 else
@@ -101,9 +102,7 @@ namespace SPPP
                 isConnected = false; // Меняем флаг
                 connectPort.Close(); // Закрываем порт
                 buttonConnect.Text = "Подключиться"; // Меняем текст кнопки
-                textBox1.Text = null; // Обнуляем текст бокс
-                textBox2.Text = null; // Обнуляем текст бокс
-                textBox3.Text = null; // Обнуляем текст бокс
+                
             }
         }
         // Функция для получения названия порта и определение типа стенда
@@ -124,8 +123,7 @@ namespace SPPP
                             timer1.Start();
                             if (connectPort.BytesToRead > 0) // Если получили в ответ хоть что-то, то заходим
                             {
-                                timer1.Start();
-                                string flag = connectPort.ReadLine().Trim(); // Считываем принятое значение
+                                string flag = connectPort.ReadExisting().Trim(); // Считываем принятое значение
                                 typeOfStand = flag; // Присваем тип стенда в глобальную переменную
                                 if (typeOfStand.Trim().Equals("0")) // СРПП
                                 {
@@ -224,6 +222,9 @@ namespace SPPP
                 buttonGenerateReport.Enabled = false; // Активируем нажатие на кнопку сформировать отчет
                 buttonInformation.Visible = true; // Деактивируем визуальное отображение кнопки информация
                 buttonInformation.Enabled = true; // Деактивируем нажатие на кнопку информация
+                textBox1.Text = null; // Обнуляем текст бокс
+                textBox2.Text = null; // Обнуляем текст бокс
+                textBox3.Text = null; // Обнуляем текст бокс
                 label1.Visible = false; // Выкл. отображения
                 label2.Visible = false; // Выкл. отображения
                 label3.Visible = false; // Выкл. отображения
@@ -242,16 +243,12 @@ namespace SPPP
                 {
                     while (connectPort.BytesToRead > 0) // Пока данные получаем
                     {
-                        byte receivedByte = (byte)connectPort.ReadByte(); // Считываем байты из порта
-
-                        String tstStr = connectPort.ReadExisting();
-                        String usfulData = "";
-
-                        if (tstStr.Substring(0, 2) == "A0") // Если данные не получены и получен стартовый флаг
+                        String raw_date = connectPort.ReadExisting();
+                        if (raw_date.Substring(0, 2) == "A0") // Если данные не получены и получен стартовый флаг
                         {
-
-                            for (int i = 2; i < tstStr.IndexOf("C0"); i++) {
-                                usfulData += tstStr[i];
+                            String usfulData = "";
+                            for (int i = 2; i < raw_date.IndexOf("C0"); i++) { // почему 0????????????????????
+                                usfulData += raw_date[i];
                             }
                             timer1.Stop(); // Останавливаем таймер.
                             dataFromMk = giveData(usfulData, '/');
@@ -328,8 +325,8 @@ namespace SPPP
                 {
                     // Выводим ошибку на экран
                     MessageBox.Show("Проверьте подключения стенда.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    disconnectFromArduino(); // Отключаемся от МК
-                    condition(); // Возвращаемся к стартовому виду интерфейса
+                    disconnectFromArduino();    // Отключаемся от МК
+                    condition();                // Возвращаемся к стартовому виду интерфейса
                 }
                 else
                 {
